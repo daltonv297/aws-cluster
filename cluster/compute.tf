@@ -5,7 +5,6 @@ resource "aws_instance" "head" {
   associate_public_ip_address = true
   key_name                    = "default"
   vpc_security_group_ids      = [aws_security_group.cluster_sg.id]
-  placement_group             = aws_placement_group.cluster_pg.name
 }
 
 resource "aws_launch_template" "worker_lt" {
@@ -13,9 +12,6 @@ resource "aws_launch_template" "worker_lt" {
   image_id               = var.ami_id
   instance_type          = "t3.small"
   vpc_security_group_ids = [aws_security_group.cluster_sg.id]
-  placement {
-    group_name = aws_placement_group.cluster_pg.name
-  }
   instance_market_options {
     market_type = "spot"
     spot_options {

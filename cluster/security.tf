@@ -25,8 +25,3 @@ resource "aws_security_group" "cluster_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-resource "aws_placement_group" "cluster_pg" {
-  name     = "cluster-pg"
-  strategy = "cluster"
-}
